@@ -14,6 +14,7 @@ import math
 a = 100.0
 b = 70.0
 
+
 def gety(x):
     return math.sqrt(b * b - x * x * b * b / (a * a))
 
@@ -64,7 +65,6 @@ def head():
         x += speed
     turtle.end_fill()
 
-
 '''
 def face():
     r = 10
@@ -91,6 +91,7 @@ def face():
     turtle.pendown()
 
     # right eye
+    def hands():
     turtle.fillcolor("black")
     turtle.begin_fill()
     turtle.circle(r)
@@ -102,6 +103,7 @@ def face():
     turtle.pendown()
 
     turtle.forward(80)
+<<<<<<< HEAD
 '''
 
 
@@ -205,7 +207,6 @@ def hands():
         turtle.forward(length)
         length += speed
 
-
 # 实现了同时画两只眼睛
 def face():
     r = 10
@@ -267,7 +268,6 @@ def face():
 
     tl.hideturtle()
     tr.hideturtle()
-
 
 def main():
     yellow_bg()
