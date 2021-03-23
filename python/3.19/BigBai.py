@@ -8,11 +8,11 @@ import math
 # turtle.setpos() 放在选定位置
 # turtle.xcor() 返回当前pos的x坐标
 # turtle.ycor() 返回当前pos的y坐标
+# turtle.Turtle() 会返回一个新的turtle实例，从而实现多个turtle同时运动
 
 # 椭圆参数
 a = 100.0
 b = 70.0
-
 
 def gety(x):
     return math.sqrt(b * b - x * x * b * b / (a * a))
@@ -65,6 +65,7 @@ def head():
     turtle.end_fill()
 
 
+'''
 def face():
     r = 10
 
@@ -89,7 +90,7 @@ def face():
     turtle.setpos(40, -r)
     turtle.pendown()
 
-    # right eyedef hands():
+    # right eye
     turtle.fillcolor("black")
     turtle.begin_fill()
     turtle.circle(r)
@@ -101,6 +102,7 @@ def face():
     turtle.pendown()
 
     turtle.forward(80)
+'''
 
 
 def body():
@@ -202,6 +204,69 @@ def hands():
         turtle.right(1)
         turtle.forward(length)
         length += speed
+
+
+# 实现了同时画两只眼睛
+def face():
+    r = 10
+    speed = 1
+
+    turtle.penup()
+    turtle.setpos(0, 0)
+    turtle.pendown()
+
+    tl = turtle.Turtle()
+    tr = turtle.Turtle()
+
+    # tl pen set
+    tl.pensize(8)
+    tl.pencolor('black')
+    tl.speed(100)
+    tl.seth(180)
+
+    # tr pen set
+    tr.pensize(8)
+    tr.pencolor('black')
+    tr.speed(100)
+    tr.seth(0)
+
+    step = 1
+    while tr.xcor() <= 30.0:
+        tl.fd(step)
+        tr.fd(step)
+
+    tl.fillcolor("black")
+    tr.fillcolor("black")
+    tl.begin_fill()
+    tr.begin_fill()
+
+    tr_x_pos = tr.xcor()
+    tl_x_pos = tl.xcor()
+    while tr_x_pos <= 50.0:
+        tr_y_pos = math.sqrt(r * r - math.pow((tr_x_pos-40), 2))
+        tr.goto(tr_x_pos, tr_y_pos)
+        tr_x_pos += speed
+
+        tl_y_pos = math.sqrt(r * r - math.pow((tl_x_pos+40), 2))
+        tl.goto(tl_x_pos, tl_y_pos)
+        tl_x_pos -= speed
+
+    tr_x_pos = tr.xcor()
+    tl_x_pos = tl.xcor()
+    while tr_x_pos >= 30.0:
+        tr_y_pos = math.sqrt(r * r - math.pow((tr_x_pos-40), 2))
+        tr.goto(tr_x_pos, -tr_y_pos)
+        tr_x_pos -= speed
+
+        tl_y_pos = math.sqrt(r * r - math.pow((tl_x_pos + 40), 2))
+        tl.goto(tl_x_pos, -tl_y_pos)
+        tl_x_pos += speed
+
+    tl.end_fill()
+    tr.end_fill()
+
+    tl.hideturtle()
+    tr.hideturtle()
 
 
 def main():
