@@ -187,7 +187,7 @@ int main() {
         Root *root = new Root;
         root->value = INT_MAX; // 标记，排除特殊情况
         root->left = NULL;
-        root->right = NULL;;
+        root->right = NULL;
 
         createBTree(data.str ,root);
         sumTree(root, 0);

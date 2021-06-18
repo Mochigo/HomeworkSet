@@ -1,0 +1,8 @@
+5 6
+cebdbac
+cac
+ecd
+dca
+aba
+bac
+cedab
