@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homework.hotel.mapper.BuyMapper">
+    <resultMap id="buy_map" type="com.homework.hotel.bean.Buy">
+        <id property="ID" column="id"/>
+        <result property="CustomerID" column="customer_id"/>
+        <result property="CommodityID" column="commodity_id"/>
+        <result property="Date" column="date"/>
+        <result property="Quantity" column="quantity"/>
+    </resultMap>
+
+    <insert id="Insert">
+        INSERT INTO commodity_customer(customer_id, commodity_id, date, quantity)
+        VALUES (#{CustomerID}, #{CommodityID}, #{Date}, #{Quantity})
+    </insert>
+
+    <select id="SelectAll" resultMap="buy_map">
+        SELECT *
+        FROM commodity_customer
+    </select>
+
+    <select id="SelectByCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM commodity_customer
+    </select>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homework.hotel.mapper.BookMapper">
+    <resultMap id="book_map" type="com.homework.hotel.bean.Book">
+        <id property="ID" column="id"/>
+        <result property="CustomerID" column="customer_id"/>
+        <result property="RoomID" column="room_id"/>
+        <result property="Date" column="date"/>
+        <result property="Last" column="last"/>
+    </resultMap>
+
+    <insert id="Insert">
+        INSERT INTO room_customer(customer_id, room_id, date, last)
+        VALUES (#{CustomerID}, #{RoomID}, #{Date}, #{Last})
+    </insert>
+
+    <select id="SelectAll" resultMap="book_map">
+        SELECT *
+        FROM room_customer
+    </select>
+
+    <select id="SelectByCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM room_customer
+    </select>
+</mapper>

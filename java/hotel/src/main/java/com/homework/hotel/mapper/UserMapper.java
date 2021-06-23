@@ -1,6 +1,6 @@
 package com.homework.hotel.mapper;
 
-import com.homework.hotel.pojo.User;
+import com.homework.hotel.bean.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

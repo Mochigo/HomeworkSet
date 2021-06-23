@@ -1,6 +1,6 @@
 package com.homework.hotel.mapper;
 
-import com.homework.hotel.pojo.Commodity;
+import com.homework.hotel.bean.Commodity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public interface CommodityMapper {
     void Insert(Commodity commodity);
 
-    List<Commodity> ListAllRooms();
+    List<Commodity> ListAllCommodities();
 
     Integer SelectByCount();
 }

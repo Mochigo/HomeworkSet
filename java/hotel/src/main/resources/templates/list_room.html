@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div class="ui teal segment" th:each="room : ${rooms}">
+        <div class="ui stackable grid">
+            <h4>房间号:</h4>
+            <p th:text="${room.RoomName}">1</p>
+        </div>
+        <div class="ui stackable grid">
+            <h4>房间类型:</h4>
+            <p th:text="${room.Type}">1</p>
+        </div>
+        <div class="ui stackable grid">
+            <h4>房间价格:</h4>
+            <p th:text="${room.Price}">1</p>
+        </div>
+        <div class="ui stackable grid">
+            <h4>房间状态:</h4>
+            <p th:text="${room.Status}">1</p>
+        </div>
+    </div>
+</head>
+<body>
+
+</body>
+</html>

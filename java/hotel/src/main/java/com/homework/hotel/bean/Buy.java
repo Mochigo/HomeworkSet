@@ -1,23 +1,23 @@
-package com.homework.hotel.pojo;
+package com.homework.hotel.bean;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
-public class Book {
+public class Buy {
     private int ID;
     private int CustomerID;
-    private int RoomID;
+    private int CommodityID;
+    private int Quantity;
     private String Date;
-    private int last;
 
-    public Book() {
+    public Buy() {
     }
 
-    public Book(int ID, int customerID, int roomID, int last) {
+    public Buy(int ID, int customerID, int commodityID, int quantity) {
         this.ID = ID;
         CustomerID = customerID;
-        RoomID = roomID;
-        this.last = last;
+        CommodityID = commodityID;
+        Quantity = quantity;
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         this.Date = df.format(new Date());
     }
@@ -38,20 +38,20 @@ public class Book {
         CustomerID = customerID;
     }
 
-    public int getRoomID() {
-        return RoomID;
+    public int getCommodityID() {
+        return CommodityID;
     }
 
-    public void setRoomID(int roomID) {
-        RoomID = roomID;
+    public void setCommodityID(int commodityID) {
+        CommodityID = commodityID;
     }
 
-    public int getLast() {
-        return last;
+    public int getQuantity() {
+        return Quantity;
     }
 
-    public void setLast(int last) {
-        this.last = last;
+    public void setQuantity(int quantity) {
+        Quantity = quantity;
     }
 
     public String getDate() {

@@ -1,6 +1,6 @@
 package com.homework.hotel.mapper;
 
-import com.homework.hotel.pojo.Room;
+import com.homework.hotel.bean.Room;
 
 import org.apache.ibatis.annotations.Mapper;
 

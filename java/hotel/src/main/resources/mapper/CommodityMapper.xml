@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homework.hotel.mapper.CommodityMapper">
+    <resultMap id="commodity_map" type="com.homework.hotel.bean.Commodity">
+        <id property="ID" column="id"/>
+        <result property="Name" column="name"/>
+        <result property="Price" column="price"/>
+    </resultMap>
+
+    <insert id="Insert">
+        INSERT INTO commodity(name, price)
+        VALUES (#{Name}, #{Price})
+    </insert>
+
+    <select id="ListAllCommodities" resultMap="commodity_map">
+        SELECT *
+        FROM commodity
+    </select>
+
+    <select id="SelectByCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM commodity
+    </select>
+</mapper>

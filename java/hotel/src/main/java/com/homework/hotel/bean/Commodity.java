@@ -1,4 +1,4 @@
-package com.homework.hotel.pojo;
+package com.homework.hotel.bean;
 
 public class Commodity {
     private int ID;

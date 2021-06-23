@@ -2,7 +2,7 @@ package com.homework.hotel.service;
 
 
 import com.homework.hotel.mapper.RoomMapper;
-import com.homework.hotel.pojo.Room;
+import com.homework.hotel.bean.Room;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

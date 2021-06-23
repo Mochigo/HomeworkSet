@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homework.hotel.mapper.CustomerMapper">
+    <resultMap id="customer_map" type="com.homework.hotel.bean.Customer">
+        <id property="ID" column="id"/>
+        <result property="Name" column="name"/>
+        <result property="Telephone" column="telephone"/>
+    </resultMap>
+
+    <insert id="Insert">
+        INSERT INTO customer(name, telephone)
+        VALUES (#{Name}, #{Telephone})
+    </insert>
+
+    <select id="SelectAll" resultMap="customer_map">
+        SELECT *
+        FROM customer
+    </select>
+
+    <select id="SelectByCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM customer
+    </select>
+
+    <select id="SelectByID" parameterType="int" resultMap="customer_map">
+        SELECT *
+        FROM customer
+        WHERE id = #{ID}
+    </select>
+
+    <delete id="Delete" parameterType="int">
+        DELETE
+        FROM customer
+        WHERE id = #{ID}
+    </delete>
+</mapper>

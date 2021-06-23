@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homework.hotel.mapper.UserMapper">
+    <resultMap id="user_map" type="com.homework.hotel.bean.User">
+        <id property="ID" column="id"/>
+        <result property="Name" column="name"/>
+        <result property="Password" column="password"/>
+    </resultMap>
+
+    <insert id="Insert">
+        INSERT INTO user(name, password)
+        VALUES (#{Name}, #{Password})
+    </insert>
+
+    <select id="SelectAll" resultMap="user_map">
+        SELECT *
+        FROM user
+    </select>
+
+    <select id="SelectByCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM user
+    </select>
+</mapper>

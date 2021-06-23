@@ -2,7 +2,7 @@ package com.homework.hotel.controller;
 
 import com.github.pagehelper.PageHelper;
 
-import com.homework.hotel.pojo.Room;
+import com.homework.hotel.bean.Room;
 import com.homework.hotel.service.RoomService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,7 +76,7 @@ public class RoomController {
         }
         List<Room> rooms = roomService.ListEmptyRooms();
         model.addAttribute("empty_rooms", rooms);
-        return "list_empty_room";
+        return "index";
     }
 
 
@@ -102,6 +102,7 @@ public class RoomController {
             return "redirect:/room/list";
         }
         Room room = new Room(name, type, fee);
+        roomService.Insert(room);
         return "redirect:/room/list";
     }
 }
