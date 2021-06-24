@@ -21,4 +21,10 @@
         SELECT COUNT(*)
         FROM user
     </select>
+
+    <select id="getUser" parameterType="String" resultMap="user_map">
+        SELECT *
+        FROM user
+        WHERE name = #{param1} and password = #{param2}
+    </select>
 </mapper>

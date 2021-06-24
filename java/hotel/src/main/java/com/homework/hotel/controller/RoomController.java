@@ -76,7 +76,7 @@ public class RoomController {
         }
         List<Room> rooms = roomService.ListEmptyRooms();
         model.addAttribute("empty_rooms", rooms);
-        return "index";
+        return "login";
     }
 
 

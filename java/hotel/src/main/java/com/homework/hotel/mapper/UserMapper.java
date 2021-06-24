@@ -12,4 +12,6 @@ public interface UserMapper {
     List<User> SelectAll();
 
     Integer SelectByCount();
+
+    User getUser(String userName, String password);
 }

@@ -25,4 +25,8 @@ public class UserService {
         return userMapper.SelectByCount();
     }
 
+    public User getUser(String userName,String password) {
+        return userMapper.getUser(userName, password);
+    }
+
 }
