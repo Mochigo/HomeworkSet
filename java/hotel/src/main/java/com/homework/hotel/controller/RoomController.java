@@ -21,7 +21,7 @@ public class RoomController {
     @Resource
     RoomService roomService;
 
-    @GetMapping("room/list")
+    @GetMapping("/room/list")
     public String ListRooms(Model model, HttpServletRequest request) {
         String pageNum = request.getParameter("page_num");
         String msg = request.getParameter("msg");
@@ -40,17 +40,16 @@ public class RoomController {
                 PageHelper.startPage(Integer.parseInt(pageNum), 3);
                 model.addAttribute("page_num", Integer.parseInt(pageNum));
             }
-
         } else {
             PageHelper.startPage(1, 3);
-            model.addAttribute("pageNum", 1);
+            model.addAttribute("page_num", 1);
         }
         List<Room> rooms = roomService.ListAllRooms();
         model.addAttribute("rooms", rooms);
-        return "list_room";
+        return "listRooms";
     }
 
-    @GetMapping("empty_room/list")
+    @GetMapping("/empty_room/list")
     public String ListEmptyRooms(Model model, HttpServletRequest request) {
         String pageNum = request.getParameter("page_num");
         String msg = request.getParameter("msg");
@@ -69,16 +68,14 @@ public class RoomController {
                 PageHelper.startPage(Integer.parseInt(pageNum), 3);
                 model.addAttribute("page_num", Integer.parseInt(pageNum));
             }
-
         } else {
             PageHelper.startPage(1, 3);
-            model.addAttribute("pageNum", 1);
+            model.addAttribute("page_num", 1);
         }
         List<Room> rooms = roomService.ListEmptyRooms();
         model.addAttribute("empty_rooms", rooms);
-        return "login";
+        return "listRooms";
     }
-
 
     @PostMapping("/room/add")
     public String addRoom(@RequestParam String name, @RequestParam String type, @RequestParam String price, RedirectAttributes redirectAttributes) {
@@ -104,5 +101,10 @@ public class RoomController {
         Room room = new Room(name, type, fee);
         roomService.Insert(room);
         return "redirect:/room/list";
+    }
+
+    @GetMapping("/room/add")
+    public String addRoom() {
+        return "addRoom";
     }
 }

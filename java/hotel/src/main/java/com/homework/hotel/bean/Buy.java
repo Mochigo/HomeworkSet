@@ -13,8 +13,7 @@ public class Buy {
     public Buy() {
     }
 
-    public Buy(int ID, int customerID, int commodityID, int quantity) {
-        this.ID = ID;
+    public Buy(int customerID, int commodityID, int quantity) {
         CustomerID = customerID;
         CommodityID = commodityID;
         Quantity = quantity;

@@ -13,8 +13,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(int ID, int customerID, int roomID, int last) {
-        this.ID = ID;
+    public Book(int customerID, int roomID, int last) {
         CustomerID = customerID;
         RoomID = roomID;
         this.Last = last;

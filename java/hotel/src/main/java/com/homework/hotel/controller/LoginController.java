@@ -24,11 +24,10 @@ public class LoginController {
     @PostMapping("/user/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Map<String, Object> map, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
         String password1 = MD5Util.getMD5Str(password);
-        System.out.println(password1);
         User user = userService.getUser(username, password1);
         if (user != null) {
             session.setAttribute("login_user", user);
-            return "redirect:/success";
+            return "redirect:/room/list";
         } else {
             map.put("msg", "用户名或密码错误");
             return "login";
