@@ -21,6 +21,13 @@ public class Book {
         this.Date = df.format(new Date());
     }
 
+    public Book(int customerID, int roomID, String date, int last) {
+        CustomerID = customerID;
+        RoomID = roomID;
+        Date = date;
+        Last = last;
+    }
+
     public int getID() {
         return ID;
     }

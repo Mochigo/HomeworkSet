@@ -48,7 +48,7 @@
                         </div>
                     </form>
                     <div class="ui mini negative message" th:unless="${#strings.isEmpty(msg)}" th:text="${msg}"></div>
-                    <div class="ui teal segment" th:each="room : ${rooms}">
+                    <div class="ui teal segment" th:each="room : ${empty_rooms}">
                         <div class="ui stackable grid">
                             <h4>房间号:</h4>
                             <p th:text="${room.RoomName}">1</p>

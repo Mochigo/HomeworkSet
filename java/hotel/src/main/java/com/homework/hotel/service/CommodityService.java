@@ -24,4 +24,8 @@ public class CommodityService {
     public Integer SelectByCount() {
         return commodityMapper.SelectByCount();
     }
+
+    public Commodity SelectByID(int ID) {
+        return commodityMapper.SelectByID(ID);
+    }
 }

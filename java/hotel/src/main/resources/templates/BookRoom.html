@@ -43,10 +43,10 @@
 
             <div class="eleven wide column">
                 <div class="ui teal segment">
-                    <h2><i class="home icon"></i>开房</h2>
+                    <h2><i class="home icon"></i>预约</h2>
                     <div class="m-padded-tb-large m-container">
                         <div class="ui container">
-                            <form action="#" method="post" th:action="@{/book/add}" class="ui  form">
+                            <form action="#" method="post" th:action="@{/book}" class="ui  form">
                                 <div class="required field">
                                     <div class="ui left labeled action input">
                                         <label class="ui compact teal basic label"> 顾客姓名</label>
@@ -67,6 +67,10 @@
                                                     th:text="${room.RoomName}">
                                             </option>
                                         </select>
+                                    </div>
+                                    <div class="ui left labeled input">
+                                        <label class="ui teal basic label">日期</label>
+                                        <input type="text" name="date" placeholder="日期(yyyy-MM-dd HH:mm:ss)">
                                     </div>
                                     <div class="ui left labeled input">
                                         <label class="ui teal basic label">持续时间(h/小时)</label>

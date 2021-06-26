@@ -2,7 +2,13 @@ package com.homework.hotel.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.homework.hotel.bean.Buy;
+import com.homework.hotel.bean.BuyRecord;
+import com.homework.hotel.bean.Commodity;
+import com.homework.hotel.bean.Customer;
 import com.homework.hotel.service.BuyService;
+import com.homework.hotel.service.CommodityService;
+import com.homework.hotel.service.CustomerService;
+import com.homework.hotel.util.GetInformationUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,6 +26,13 @@ public class BuyController {
 
     @Resource
     BuyService buyService;
+
+    @Resource
+    CommodityService commodityService;
+
+
+    @Resource
+    CustomerService customerService;
 
     @GetMapping("/buy/list")
     public String ListBuyRecords(Model model, HttpServletRequest request) {
@@ -44,8 +58,24 @@ public class BuyController {
             model.addAttribute("page_num", 1);
         }
         List<Buy> buys = buyService.SelectAll();
-        model.addAttribute("buy_informations", buys);
-        return "listRooms";
+        List<BuyRecord> buyRecords = new ArrayList<BuyRecord>();
+        List<Customer> customers = customerService.SelectAll();
+        List<Commodity> commodities = commodityService.ListAllCommodities();
+        for (Buy buy : buys) {
+            String commodityName = GetInformationUtil.getCommodityName(commodities, buy.getCommodityID());
+            String customerName = GetInformationUtil.getCustomerName(customers, buy.getCustomerID());
+            BuyRecord buyRecord = new BuyRecord(customerName, commodityName, buy.getQuantity(), buy.getDate());
+            buyRecords.add(buyRecord);
+        }
+        model.addAttribute("buy_records", buyRecords);
+        return "listBuyRecords";
+    }
+
+    @GetMapping("/buy/add")
+    public String addBuy(Model model) {
+        model.addAttribute("commodities", commodityService.ListAllCommodities());
+        model.addAttribute("customers", customerService.SelectAll());
+        return "addBuyRecords";
     }
 
     @PostMapping("/buy/add")
@@ -68,6 +98,6 @@ public class BuyController {
 
         Buy buy = new Buy(customer, commodity, total);
         buyService.Insert(buy);
-        return "listRooms";
+        return "redirect:/buy/list";
     }
 }

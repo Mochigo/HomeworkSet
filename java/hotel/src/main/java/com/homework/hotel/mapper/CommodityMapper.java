@@ -12,4 +12,6 @@ public interface CommodityMapper {
     List<Commodity> ListAllCommodities();
 
     Integer SelectByCount();
+
+    Commodity SelectByID(int ID);
 }

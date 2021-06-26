@@ -21,4 +21,10 @@
         SELECT COUNT(*)
         FROM commodity
     </select>
+
+    <select id="SelectByID" parameterType="int" resultMap="commodity_map">
+        SELECT *
+        FROM commodity
+        WHERE id = #{ID}
+    </select>
 </mapper>

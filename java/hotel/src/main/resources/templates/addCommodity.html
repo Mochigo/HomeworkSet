@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>新增会员</title>
+    <title>商品新增</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" href="css/me.css">
 </head>
@@ -37,18 +37,18 @@
 
             <div class="eleven wide column">
                 <div class="ui teal segment">
-                    <h2><i class="home icon"></i>用户新增</h2>
+                    <h2><i class="home icon"></i>商品新增</h2>
                     <div class="m-padded-tb-large m-container">
                         <div class="ui container">
-                            <form action="#" method="post" th:action="@{/customer/add}" class="ui  form">
+                            <form action="#" method="post" th:action="@{/commodity/add}" class="ui  form">
                                 <div class="required field">
                                     <div class="ui left labeled input">
-                                        <label class="ui teal basic label">用户姓名</label>
-                                        <input type="text" name="name" placeholder="用户姓名">
+                                        <label class="ui teal basic label">商品名称</label>
+                                        <input type="text" name="name" placeholder="商品名称">
                                     </div>
                                     <div class="ui left labeled input">
-                                        <label class="ui teal basic label">用户电话</label>
-                                        <input type="text" name="telephone" placeholder="用户电话">
+                                        <label class="ui teal basic label">商品价格</label>
+                                        <input type="text" name="price" placeholder="商品价格">
                                     </div>
                                 </div>
 

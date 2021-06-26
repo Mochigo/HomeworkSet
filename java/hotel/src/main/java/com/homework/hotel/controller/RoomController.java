@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 
 import com.homework.hotel.bean.Room;
 import com.homework.hotel.service.RoomService;
+import com.homework.hotel.service.RoomTypeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,9 @@ public class RoomController {
 
     @Resource
     RoomService roomService;
+
+    @Resource
+    RoomTypeService roomTypeService;
 
     @GetMapping("/room/list")
     public String ListRooms(Model model, HttpServletRequest request) {
@@ -74,7 +78,35 @@ public class RoomController {
         }
         List<Room> rooms = roomService.ListEmptyRooms();
         model.addAttribute("empty_rooms", rooms);
-        return "listRooms";
+        return "listEmptyRooms";
+    }
+
+    @GetMapping("/used_room/list")
+    public String ListUsedRooms(Model model, HttpServletRequest request) {
+        String pageNum = request.getParameter("page_num");
+        String msg = request.getParameter("msg");
+        if (msg != null) {
+            model.addAttribute("msg", msg);
+        }
+        Integer totalPage = roomService.SelectByCount() % 3 == 0 ? (roomService.SelectByCount() / 3) : (roomService.SelectByCount() / 3) + 1;
+        if (pageNum != null) {
+            if (Integer.parseInt(pageNum) == 0) {
+                PageHelper.startPage(totalPage, 3);
+                model.addAttribute("page_num", totalPage);
+            } else if (Integer.parseInt(pageNum) == totalPage + 1) {
+                PageHelper.startPage(1, 3);
+                model.addAttribute("page_num", 1);
+            } else {
+                PageHelper.startPage(Integer.parseInt(pageNum), 3);
+                model.addAttribute("page_num", Integer.parseInt(pageNum));
+            }
+        } else {
+            PageHelper.startPage(1, 3);
+            model.addAttribute("page_num", 1);
+        }
+        List<Room> rooms = roomService.ListUsedRooms();
+        model.addAttribute("used_rooms", rooms);
+        return "listUsedRooms";
     }
 
     @PostMapping("/room/add")
@@ -104,7 +136,9 @@ public class RoomController {
     }
 
     @GetMapping("/room/add")
-    public String addRoom() {
+    public String addRoom(Model model) {
+        model.addAttribute("roomTypes", roomTypeService.ListAllRoomTypes());
+        System.out.println(roomTypeService.ListAllRoomTypes());
         return "addRoom";
     }
 }

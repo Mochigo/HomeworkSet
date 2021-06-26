@@ -4,16 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" ,initial-scale="1.0">
-    <title>开房</title>
+    <title>购买商品</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" href="css/me.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
-    <script>
-        $('.ui.dropdown').dropdown({
-            on: 'hover'
-        });
-    </script>
 </head>
 <body>
 <nav class="ui inverted attached segment">
@@ -43,14 +36,14 @@
 
             <div class="eleven wide column">
                 <div class="ui teal segment">
-                    <h2><i class="home icon"></i>开房</h2>
+                    <h2><i class="home icon"></i>消费</h2>
                     <div class="m-padded-tb-large m-container">
                         <div class="ui container">
-                            <form action="#" method="post" th:action="@{/book/add}" class="ui  form">
+                            <form action="#" method="post" th:action="@{/buy/add}" class="ui  form">
                                 <div class="required field">
                                     <div class="ui left labeled action input">
                                         <label class="ui compact teal basic label"> 顾客姓名</label>
-                                        <select id="customers" name="customerID"
+                                        <select id="bikes" name="customerID"
                                                 style="border-left: none; border-top: none; border-bottom: none;">
                                             <option th:each="customer : ${customers}" class="item"
                                                     th:value="${customer.ID}"
@@ -59,18 +52,18 @@
                                         </select>
                                     </div>
                                     <div class="ui left labeled action input">
-                                        <label class="ui compact teal basic label"> 房间号</label>
-                                        <select id="rooms" name="roomID"
+                                        <label class="ui compact teal basic label"> 商品号</label>
+                                        <select id="cars" name="commodityID"
                                                 style="border-left: none; border-top: none; border-bottom: none;">
-                                            <option th:each="room : ${rooms}" class="item"
-                                                    th:value="${room.ID}"
-                                                    th:text="${room.RoomName}">
+                                            <option th:each="commodity : ${commodities}" class="item"
+                                                    th:value="${commodity.ID}"
+                                                    th:text="${commodity.Name}">
                                             </option>
                                         </select>
                                     </div>
                                     <div class="ui left labeled input">
-                                        <label class="ui teal basic label">持续时间(h/小时)</label>
-                                        <input type="text" name="last" placeholder="持续时间(h/小时)">
+                                        <label class="ui teal basic label">数量</label>
+                                        <input type="text" name="quantity" placeholder="数量">
                                     </div>
                                 </div>
 
@@ -86,6 +79,12 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<script>
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+</script>
 </body>
 </html>

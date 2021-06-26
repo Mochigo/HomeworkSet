@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>新增会员</title>
+    <title>客房类型新增</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" href="css/me.css">
 </head>
@@ -37,21 +37,16 @@
 
             <div class="eleven wide column">
                 <div class="ui teal segment">
-                    <h2><i class="home icon"></i>用户新增</h2>
+                    <h2><i class="home icon"></i>客房类型新增</h2>
                     <div class="m-padded-tb-large m-container">
                         <div class="ui container">
-                            <form action="#" method="post" th:action="@{/customer/add}" class="ui  form">
+                            <form action="#" method="post" th:action="@{/roomType/add}" class="ui  form">
                                 <div class="required field">
                                     <div class="ui left labeled input">
-                                        <label class="ui teal basic label">用户姓名</label>
-                                        <input type="text" name="name" placeholder="用户姓名">
-                                    </div>
-                                    <div class="ui left labeled input">
-                                        <label class="ui teal basic label">用户电话</label>
-                                        <input type="text" name="telephone" placeholder="用户电话">
+                                        <label class="ui teal basic label">房间类型名</label>
+                                        <input type="text" name="typeName" placeholder="房间类型名">
                                     </div>
                                 </div>
-
                                 <div class="ui right aligned container">
                                     <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
                                     <button class="ui  teal submit button">提交</button>
@@ -64,7 +59,7 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
 </body>
 </html>

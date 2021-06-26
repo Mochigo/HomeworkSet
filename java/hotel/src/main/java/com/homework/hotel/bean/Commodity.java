@@ -7,8 +7,7 @@ public class Commodity {
 
     public Commodity() {}
 
-    public Commodity(int id, String name, double price) {
-        this.ID = id;
+    public Commodity( String name, double price) {
         this.Name = name;
         this.Price = price;
     }

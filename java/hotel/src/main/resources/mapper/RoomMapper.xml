@@ -14,10 +14,17 @@
         VALUES (#{RoomName}, #{Type}, #{Price}, #{Status})
     </insert>
 
+    <select id="SelectByID" parameterType="int" resultMap="room_map">
+        SELECT *
+        FROM room
+        WHERE id = #{ID}
+    </select>
+
+
     <select id="ListEmptyRooms" resultMap="room_map">
         SELECT *
         FROM room
-        WHERE status = 'empty'
+        WHERE status = '空闲'
     </select>
 
     <select id="ListAllRooms" resultMap="room_map">
@@ -25,8 +32,32 @@
         FROM room
     </select>
 
+    <select id="ListUsedRooms" resultMap="room_map">
+        SELECT *
+        FROM room
+        WHERE status != '空闲'
+    </select>
+
     <select id="SelectByCount" resultType="Integer">
         SELECT COUNT(*)
         FROM room
+    </select>
+
+    <select id="UpdateStatusEmpty" parameterType="int">
+        UPDATE room
+        SET status='空闲'
+        WHERE ID = #{param1}
+    </select>
+
+    <select id="UpdateStatusBusy" parameterType="int">
+        UPDATE room
+        SET status='使用中'
+        WHERE ID = #{param1}
+    </select>
+
+    <select id="UpdateStatusBooked" parameterType="int">
+        UPDATE room
+        SET status='已被预订'
+        WHERE ID = #{param1}
     </select>
 </mapper>

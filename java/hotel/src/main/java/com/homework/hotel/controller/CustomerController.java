@@ -6,9 +6,7 @@ import com.homework.hotel.bean.Room;
 import com.homework.hotel.service.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
@@ -67,6 +65,16 @@ public class CustomerController {
 
         Customer customer = new Customer(name, telephone);
         customerService.Insert(customer);
+        return "redirect:/customer/list";
+    }
+
+    @RequestMapping("/customer/delete")
+    public String deleteCustomer(@RequestParam String customerID, RedirectAttributes redirectAttributes) {
+        if (customerID == "") {
+            redirectAttributes.addAttribute("msg", "删除失败，姓名为空");
+            return "redirect:/customer/list";
+        }
+        customerService.Delete(Integer.parseInt(customerID));
         return "redirect:/customer/list";
     }
 }

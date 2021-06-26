@@ -7,15 +7,68 @@
     <meta name="author" content="">
     <title>Hotel Sign</title>
     <!-- Bootstrap core CSS -->
-    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}"
-          rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
 </head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
 
+    body {
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        -ms-flex-align: center;
+        -ms-flex-pack: center;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        /*background-color: #f5f5f5;*/
+    }
+
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+
+    .form-signBootstrapin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
 <body class="text-center">
 <form class="form-signin" action="dashboard.html" th:action="@{/user/login}" method="post">
-    <img class="mb-4" th:src="@{/asserts/img/bootstrap-solid.svg}" src="asserts/img/bootstrap-solid.svg" alt=""
+    <img class="mb-4" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNjEyIj4KICA8ZyBzb2RpcG9kaTpkb2NuYW1lPSJ0d2l0dGVyX2Jvb3RzdHJhcF9sb2dvLnN2ZyIgaW5rc2NhcGU6dmVyc2lvbj0iMC40OC4xIHI5NzYwIiB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIiB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSI+CiAgICA8cGF0aCBmaWxsPSIjNTYzRDdDIiBkPSJNNjEyIDUxMGMwIDU2LjEtNDUuOSAxMDItMTAyIDEwMkgxMDJDNDUuOSA2MTIgMCA1NjYuMSAwIDUxMFYxMDJDMCA0NS45IDQ1LjkgMCAxMDIgMGg0MDhjNTYuMSAwIDEwMiA0NS45IDEwMiAxMDJ2NDA4eiIvPgogICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTTE2Ni4zIDEzM2gxNzMuNWMzMiAwIDU3LjcgNy4zIDc3IDIyczI5IDM2LjggMjkgNjYuNWMwIDE4LTQuNCAzMy40LTEzLjIgNDYuMi04LjggMTIuOC0yMS40IDIyLjgtMzcuOCAyOS44djFjMjIgNC43IDM4LjcgMTUuMSA1MCAzMS4yIDExLjMgMTYuMiAxNyAzNi40IDE3IDYwLjggMCAxNC0yLjUgMjcuMS03LjUgMzkuMi01IDEyLjItMTIuOCAyMi43LTIzLjUgMzEuNXMtMjQuMyAxNS44LTQxIDIxLTM2LjUgNy44LTU5LjUgNy44aC0xNjRWMTMzem02Mi41IDE0OS41aDEwMmMxNSAwIDI3LjUtNC4yIDM3LjUtMTIuOHMxNS0yMC44IDE1LTM2LjhjMC0xOC00LjUtMzAuNy0xMy41LTM4cy0yMi0xMS0zOS0xMWgtMTAydjk4LjZ6bTAgMTU2LjVoMTEwLjVjMTkgMCAzMy44LTQuOSA0NC4yLTE0LjggMTAuNS05LjggMTUuOC0yMy44IDE1LjgtNDEuOCAwLTE3LjctNS4yLTMxLjItMTUuOC00MC44cy0yNS4yLTE0LjItNDQuMi0xNC4ySDIyOC44VjQzOXoiLz4KICA8L2c+Cjwvc3ZnPgo="
          width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
     <!--判断-->
@@ -34,7 +87,7 @@
         <label>
             <input type="checkbox" value="remember-me"/> [[#{login.remember}]]
         </label>
-        <a href="/user/register">注册</a>
+<!--        <a href="/user/register" th:href="@{/user/register}">注册</a>-->
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn}">Sign in</button>
     <p class="mt-5 mb-3 text-muted">© 2021</p>

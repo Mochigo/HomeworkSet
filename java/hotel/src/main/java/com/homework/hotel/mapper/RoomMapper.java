@@ -14,5 +14,15 @@ public interface RoomMapper {
 
     List<Room> ListAllRooms();
 
+    List<Room> ListUsedRooms();
+
     Integer SelectByCount();
+
+    Room SelectByID(int ID);
+
+    void UpdateStatusEmpty(int ID);
+
+    void UpdateStatusBusy(int ID);
+
+    void UpdateStatusBooked(int ID);
 }

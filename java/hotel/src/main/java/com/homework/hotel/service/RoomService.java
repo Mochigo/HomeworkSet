@@ -14,8 +14,12 @@ public class RoomService {
     @Resource
     RoomMapper roomMapper;
 
-    public List<Room> ListEmptyRooms(){
+    public List<Room> ListEmptyRooms() {
         return roomMapper.ListEmptyRooms();
+    }
+
+    public List<Room> ListUsedRooms() {
+        return roomMapper.ListUsedRooms();
     }
 
     public void Insert(Room room) {
@@ -28,5 +32,20 @@ public class RoomService {
 
     public List<Room> ListAllRooms() {
         return roomMapper.ListAllRooms();
+    }
+
+    public void UpdateStatusEmpty(int ID) {
+        roomMapper.UpdateStatusEmpty(ID);
+    }
+
+    public void UpdateStatusBusy(int ID) {
+        roomMapper.UpdateStatusBusy(ID);
+    }
+
+    public Room SelectByID(int ID) {
+        return roomMapper.SelectByID(ID);
+    }
+    public void UpdateStatusBooked(int ID) {
+        roomMapper.UpdateStatusBooked(ID);
     }
 }

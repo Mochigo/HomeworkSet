@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>会员列表</title>
+    <title>商品购买记录</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" href="css/me.css">
 </head>
@@ -35,45 +35,37 @@
 
             <div class="eleven wide column">
                 <div class="ui teal segment">
-                    <h2><i class="home icon"></i>会员列表</h2>
-                    <form name="search" action="#" th:action="@{/customer/list}" method="post"
-                          style="margin-bottom: 7vh;">
-                        <a href="#" th:href="@{/customer/add}" class="ui  right floated teal basic button">新增会员</a>
+                    <h2><i class="home icon"></i>消费记录</h2>
+                    <form name="search" action="#" th:action="@{/buy/list}" method="post"  style="margin-bottom: 7vh;">
+                        <a href="#" th:href="@{/commodity/add}" class="ui  right floated teal basic button">新增商品</a>
+                        <a href="#" th:href="@{/buy/add}" class="ui  right floated teal basic button">购买商品</a>
                     </form>
-                    <div class="ui teal segment" th:each="customer : ${customers}">
-                        <div class="row">
-                            <div class="column">
-                                <div class="ui stackable grid">
-                                    <h4>顾客姓名:</h4>
-                                    <p th:text="${customer.Name}">1</p>
-                                </div>
-                                <div class="ui stackable grid">
-                                    <h4>顾客电话:</h4>
-                                    <p th:text="${customer.Telephone}">1</p>
-                                </div>
-                            </div>
-                            <form action="#" method="delete" th:action="@{/customer/delete}" class="ui  form">
-                                <div class="required field" style="display: none;">
-                                    <div class="ui left labeled input">
-                                        <label class="ui teal basic label">ID</label>
-                                        <input type="text" name="customerID" placeholder="用户ID" th:value="${customer.ID}">
-                                    </div>
-                                </div>
-                                <div class="ui right aligned container">
-                                    <button class="ui  teal submit button" style="background-color: #af5656;">删除</button>
-                                </div>
-                            </form>
+                    <div class="ui mini negative message" th:unless="${#strings.isEmpty(msg)}" th:text="${msg}"></div>
+                    <div class="ui teal segment" th:each="buy_record : ${buy_records}">
+                        <div class="ui stackable grid">
+                            <h4>用户ID:</h4>
+                            <p th:text="${buy_record.CustomerName}">1</p>
+                        </div>
+                        <div class="ui stackable grid">
+                            <h4>商品ID:</h4>
+                            <p th:text="${buy_record.CommodityName}">1</p>
+                        </div>
+                        <div class="ui stackable grid">
+                            <h4>购买时间:</h4>
+                            <p th:text="${buy_record.Date}">1</p>
+                        </div>
+                        <div class="ui stackable grid">
+                            <h4>数量:</h4>
+                            <p th:text="${buy_record.Quantity}">1</p>
                         </div>
                     </div>
-
                     <div class="ui bottom attached segment">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <a th:href="@{/customer/list(page_num=${page_num}-1)}"
-                                   class="ui teal basic button">上一页</a>
+                                <a th:href="@{/buy/list(page_num=${page_num}-1)}" class="ui teal basic button">上一页</a>
                             </div>
                             <div class="right aligned column">
-                                <a href="#" th:href="@{/customer/list(page_num=${page_num}+1)}"
+                                <a href="#" th:href="@{/buy/list(page_num=${page_num}+1)}"
                                    class="ui teal basic button">下一页</a>
                             </div>
                         </div>
