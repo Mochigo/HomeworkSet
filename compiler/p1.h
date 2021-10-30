@@ -21,47 +21,47 @@ char *rwtab[] = {"begin", "if", "then", "while", "do", "end", _KEY_WORD_END};
 
 Word *scanner();
 
-void main()
-{
-    int over = 1;
-    Word *oneWord = (Word *)malloc(sizeof(Word));
+// void main()
+// {
+//     int over = 1;
+//     Word *oneWord = (Word *)malloc(sizeof(Word));
 
-    FILE *read = NULL;
-    read = fopen("./data.txt", "r");
-    if (!read)
-    {
-        return;
-    }
+//     FILE *read = NULL;
+//     read = fopen("./data.txt", "r");
+//     if (!read)
+//     {
+//         return;
+//     }
 
-    fscanf(read, "%[^#]s", input);
-    fclose(read);
+//     fscanf(read, "%[^#]s", input);
+//     fclose(read);
 
-    FILE *write = NULL;
-    write = fopen("./output.txt", "w+");
-    if (!write)
-    {
-        return;
-    }
+//     FILE *write = NULL;
+//     write = fopen("./output.txt", "w+");
+//     if (!write)
+//     {
+//         return;
+//     }
 
-    // printf("Enter Your words(end with #):");
-    // scanf("%[^#]s", input);
-    p_input = 0;
-    fprintf(write, "Your words: \n%s\n", input);
+//     // printf("Enter Your words(end with #):");
+//     // scanf("%[^#]s", input);
+//     p_input = 0;
+//     fprintf(write, "Your words: \n%s\n", input);
 
-    while (over < 1000 && over != -1)
-    {
-        oneWord = scanner();
-        if (oneWord->typeNum < 1000)
-        {
-            fprintf(write, "(%d, %s)\n", oneWord->typeNum, oneWord->word);
-        }
-        over = oneWord->typeNum;
-    }
-    fclose(write);
-    // printf("\npress # to exit:");
-    // scanf("%[^#]s", input);
-    free(oneWord);
-}
+//     while (over < 1000 && over != -1)
+//     {
+//         oneWord = scanner();
+//         if (oneWord->typeNum < 1000)
+//         {
+//             fprintf(write, "(%d, %s)\n", oneWord->typeNum, oneWord->word);
+//         }
+//         over = oneWord->typeNum;
+//     }
+//     fclose(write);
+//     // printf("\npress # to exit:");
+//     // scanf("%[^#]s", input);
+//     free(oneWord);
+// }
 
 char m_getch()
 {
