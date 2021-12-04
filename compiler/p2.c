@@ -3,7 +3,7 @@
 
 // 变量名必须以字母开头
 
-Word *curWord;
+Word* curWord;
 int kk;
 
 void lrparser();
@@ -13,14 +13,12 @@ void expression();
 void term();
 void factor();
 
-int main()
-{
-    curWord = (Word *)malloc(sizeof(Word));
+int main() {
+    curWord = (Word*)malloc(sizeof(Word));
     kk = 0;
-    FILE *read = NULL;
+    FILE* read = NULL;
     read = fopen("./data.txt", "r");
-    if (!read)
-    {
+    if (!read) {
         return 0;
     }
 
@@ -32,47 +30,36 @@ int main()
     return 0;
 }
 
-void lrparser()
-{
+void lrparser() {
     curWord = scanner();
     // 1 对应 begin
-    if (curWord->typeNum == 1)
-    {
+    if (curWord->typeNum == 1) {
         curWord = scanner();
         yucu();
         // 6 对应 end
-        if (curWord->typeNum == 6)
-        {
+        if (curWord->typeNum == 6) {
             curWord = scanner();
             // 1000 代表 结束符
-            if (curWord->typeNum == 1000 && kk == 0)
-            {
+            if (curWord->typeNum == 1000 && kk == 0) {
                 printf("success");
             }
-        }
-        else
-        {
-            if (kk != 1)
-            {
+        } else {
+            if (kk != 1) {
                 printf("缺少end");
                 kk = 1;
             }
         }
-    }
-    else
-    {
+    } else {
         printf("缺乏begin");
         kk = 1;
     }
     return;
 }
 
-void yucu()
-{
+void yucu() {
     statement();
     // 34 对应 ;
-    while (curWord->typeNum == 34)
-    {
+    while (curWord->typeNum == 34) {
         curWord = scanner();
         statement();
     }
@@ -80,29 +67,21 @@ void yucu()
     return;
 }
 
-void statement()
-{
+void statement() {
     // 10 对应 标识符
-    if (curWord->typeNum == 10)
-    {
+    if (curWord->typeNum == 10) {
         curWord = scanner();
         // 42 对应 :=
-        if (curWord->typeNum == 42)
-        {
+        if (curWord->typeNum == 42) {
             curWord = scanner();
             expression();
-        }
-        else
-        {
+        } else {
             printf("赋值符号错误");
             kk = 1;
         }
-    }
-    else
-    {
+    } else {
         // 如果刚好就是结束符, 退出
-        if (curWord->typeNum == 6)
-        {
+        if (curWord->typeNum == 6) {
             return;
         }
         printf("赋值语句错误");
@@ -111,24 +90,20 @@ void statement()
     return;
 }
 
-void expression()
-{
+void expression() {
     term();
     // 22 对应 + 23 对应 -
-    while (curWord->typeNum == 22 || curWord->typeNum == 23)
-    {
+    while (curWord->typeNum == 22 || curWord->typeNum == 23) {
         curWord = scanner();
         term();
     }
     return;
 }
 
-void term()
-{
+void term() {
     factor();
     // 24 对应 * 25 对应 /
-    while (curWord->typeNum == 24 || curWord->typeNum == 25)
-    {
+    while (curWord->typeNum == 24 || curWord->typeNum == 25) {
         curWord = scanner();
         factor();
     }
@@ -136,30 +111,22 @@ void term()
     return;
 }
 
-void factor()
-{
+void factor() {
     // 10 对应 变量名（标识符） 20 对应 数字
-    if (curWord->typeNum == 10 || curWord->typeNum == 20)
-    {
+    if (curWord->typeNum == 10 || curWord->typeNum == 20) {
         curWord = scanner();
     }
     // 26 对应 (
-    else if (curWord->typeNum == 26)
-    {
+    else if (curWord->typeNum == 26) {
         curWord = scanner();
         expression();
-        if (curWord->typeNum == 27)
-        {
+        if (curWord->typeNum == 27) {
             curWord = scanner();
-        }
-        else
-        {
+        } else {
             printf("缺少)");
             kk = 1;
         }
-    }
-    else
-    {
+    } else {
         printf("表达式错误");
         kk = 1;
     }
